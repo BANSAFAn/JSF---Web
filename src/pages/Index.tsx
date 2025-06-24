@@ -49,6 +49,11 @@ const Index = () => {
       <header className="relative z-10 border-b glass-card">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2 md:space-x-4 animate-slide-in">
+            <img 
+              src="/logo.svg" 
+              alt="JSF Logo" 
+              className="w-12 h-12 md:w-16 md:h-16 animate-float"
+            />
             <div className="space-y-1">
               <h1 className="text-xl md:text-3xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-float">
                 Java Selector Finder
