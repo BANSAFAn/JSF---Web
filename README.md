@@ -11,7 +11,7 @@
   [![Vite](https://img.shields.io/badge/Vite-5.x-646CFF.svg)](https://vitejs.dev/)
   [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC.svg)](https://tailwindcss.com/)
   
-  [🌐 Live Demo](https://your-demo-link.com) • [📖 Documentation](https://github.com/yourusername/JSF---Web/wiki) • [🐛 Report Bug](https://github.com/yourusername/JSF---Web/issues)
+ • [🐛 Report Bug](https://github.com/BANSAFAn/JSF---Web/issues)
 </div>
 
 ---
@@ -159,8 +159,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ## 👨‍💻 Author
 
 **BANSAFAn**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
 
 ---
 
