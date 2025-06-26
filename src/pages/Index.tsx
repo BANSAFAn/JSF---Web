@@ -7,7 +7,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { LoadingScreen } from "@/components/LoadingScreen";
-import { LaunchersTab } from "@/components/LaunchersTab";
+import { MemoizedLaunchersTab as LaunchersTab } from "@/components/LaunchersTab";
 import { useTranslation } from "@/hooks/useTranslation";
 
 const Index = () => {
@@ -47,24 +47,25 @@ const Index = () => {
       
       {/* Header */}
       <header className="relative z-10 border-b glass-card">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-2 sm:px-4 py-2 sm:py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2 md:space-x-4 animate-slide-in">
             <img 
               src="/logo.svg" 
               alt="JSF Logo" 
-              className="w-12 h-12 md:w-16 md:h-16 animate-float"
+              className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 animate-float"
+              loading="eager"
             />
-            <div className="space-y-1">
-              <h1 className="text-xl md:text-3xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-float">
+            <div className="space-y-0.5 sm:space-y-1">
+              <h1 className="text-lg sm:text-xl md:text-3xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-float">
                 Java Selector Finder
               </h1>
-              <p className="text-xs md:text-sm text-muted-foreground">
+              <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">
                 {t('subtitle', 'Найдите идеальную Java для вашей игры')}
               </p>
             </div>
           </div>
           
-          <div className="flex items-center space-x-2 md:space-x-4 animate-fade-in">
+          <div className="flex items-center space-x-1 sm:space-x-2 md:space-x-4 animate-fade-in">
             <LanguageToggle />
             <ThemeToggle theme={theme} setTheme={setTheme} />
           </div>
@@ -72,9 +73,9 @@ const Index = () => {
       </header>
 
       {/* Main Content */}
-      <main className="relative z-10 container mx-auto px-4 py-4 md:py-8">
+      <main className="relative z-10 container mx-auto px-2 sm:px-4 py-2 sm:py-4 md:py-8">
         <Tabs defaultValue="main" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-4 md:mb-8 enhanced-tabs">
+          <TabsList className="grid w-full grid-cols-3 mb-2 sm:mb-4 md:mb-8 enhanced-tabs">
             <TabsTrigger 
               value="main" 
               className="enhanced-tab-trigger text-xs md:text-base"

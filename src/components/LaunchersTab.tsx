@@ -3,13 +3,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { AlertTriangle } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
+import { memo } from "react";
 
-export const LaunchersTab = () => {
+const LaunchersTab = () => {
   const { t } = useTranslation();
 
   return (
     <div className="max-w-4xl mx-auto">
-      <Card className="glass-card border-yellow-200 bg-yellow-50/50 dark:bg-yellow-950/20 animate-bounce-in">
+      <Card className="glass-card border-yellow-200 bg-yellow-50/50 dark:bg-yellow-950/20 animate-bounce-in transition-all duration-300 hover:scale-[1.01]">
         <CardHeader className="text-center">
           <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
             <AlertTriangle className="h-8 w-8 text-white" />
@@ -28,7 +29,7 @@ export const LaunchersTab = () => {
             </Badge>
           </div>
           
-          <div className="p-6 bg-muted/50 rounded-lg">
+          <div className="p-4 sm:p-6 bg-muted/50 rounded-lg transition-all duration-300 hover:bg-muted/70">
             <h3 className="font-semibold mb-3 text-center">
               {t('launchers.what_coming', 'Что будет добавлено:')}
             </h3>
@@ -52,7 +53,7 @@ export const LaunchersTab = () => {
             </ul>
           </div>
 
-          <div className="text-center text-sm text-muted-foreground">
+          <div className="text-center text-xs sm:text-sm text-muted-foreground">
             {t('launchers.current_message', 'В настоящее время мы не можем рекомендовать конкретные лаунчеры, но эта функция будет добавлена в ближайшее время.')}
           </div>
         </CardContent>
@@ -60,3 +61,5 @@ export const LaunchersTab = () => {
     </div>
   );
 };
+
+export const MemoizedLaunchersTab = memo(LaunchersTab);

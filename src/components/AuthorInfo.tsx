@@ -69,7 +69,7 @@ export const AuthorInfo = () => {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 mt-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 mt-4 sm:mt-6">
               {stats.map((stat, index) => (
                 <div 
                   key={stat.label} 
@@ -79,8 +79,8 @@ export const AuthorInfo = () => {
                   <div className="flex items-center justify-center mb-1">
                     {stat.icon}
                   </div>
-                  <div className="text-2xl font-bold text-primary">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="text-xl sm:text-2xl font-bold text-primary">{stat.value}</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -125,7 +125,7 @@ export const AuthorInfo = () => {
               <ExternalLink className="h-5 w-5 text-green-500" />
               {t('author.links', 'Ссылки')}
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {links.map((link, index) => (
                 <Button
                   key={link.name}
