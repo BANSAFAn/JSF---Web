@@ -25,6 +25,7 @@
 - **🔍 Smart Recommendations**: Get personalized Java version suggestions based on your Minecraft version
 - **🎮 Enhanced Gaming**: Optimize performance with the right Java runtime
 - **🛠️ Multiple Launchers**: Support for various Minecraft launchers
+- **🤖 AI-Powered**: Gemini AI integration for intelligent assistance
 - **🌍 Multi-language**: Available in multiple languages
 - **🎨 Beautiful UI**: Modern, responsive design with multiple themes
 - **⚡ Lightning Fast**: Built with Vite for optimal performance
@@ -38,6 +39,7 @@
 - **Compatibility Matrix**: Comprehensive database of Minecraft-Java compatibility
 - **Performance Optimization**: Recommendations for optimal JVM arguments
 - **Launcher Integration**: Support for popular Minecraft launchers
+- **AI Assistant**: Gemini-powered AI to answer Minecraft and Java-related questions
 
 ### 🎨 User Experience
 - **Responsive Design**: Perfect experience on desktop, tablet, and mobile
@@ -71,28 +73,6 @@
 - **Node.js** 18+ or **Bun** 1.0+
 - **Git** for version control
 
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/JSF---Web.git
-cd JSF---Web
-
-# Install dependencies (choose one)
-npm install
-# or
-bun install
-
-# Start development server
-npm run dev
-# or
-bun dev
-```
-
-### 🌐 Open Your Browser
-Navigate to `http://localhost:5173` and start exploring!
-
----
 
 ## 📁 Project Structure
 
@@ -100,8 +80,14 @@ Navigate to `http://localhost:5173` and start exploring!
 JSF---Web/
 ├── 📁 public/              # Static assets
 │   └── logo.svg            # JSF logo
+├── 📁 server/              # Backend server for AI functionality
+│   ├── index.js            # Express server with Gemini API integration
+│   └── .env.example        # Environment variables template
 ├── 📁 src/
+│   ├── 📁 api/             # API client functions
+│   │   └── chat.ts         # Gemini AI chat API client
 │   ├── 📁 components/      # Reusable UI components
+│   │   ├── AIMJFTab.tsx    # AI chat interface component
 │   │   ├── JavaSelector.tsx
 │   │   ├── ThemeToggle.tsx
 │   │   └── ...
@@ -109,21 +95,12 @@ JSF---Web/
 │   ├── 📁 pages/           # Application pages
 │   ├── 📁 data/            # Static data and configurations
 │   └── 📁 utils/           # Utility functions
+├── 📁 .github/             # GitHub configuration
+│   └── workflows/          # GitHub Actions workflows
 ├── 📄 package.json         # Dependencies and scripts
 ├── 📄 tailwind.config.ts   # Tailwind CSS configuration
 └── 📄 vite.config.ts       # Vite build configuration
 ```
-
----
-
-## 🎨 Themes
-
-JSF comes with four beautiful themes:
-
-- **🌙 Dark**: Sleek and modern dark interface
-- **☀️ Light**: Clean and bright design
-- **💫 Neon**: Cyberpunk-inspired glowing elements
-- **🕹️ Retro**: Nostalgic gaming aesthetics
 
 ---
 

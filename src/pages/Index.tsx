@@ -1,139 +1,42 @@
 
-import { useState, useEffect } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { JavaSelector } from "@/components/JavaSelector";
-import { AuthorInfo } from "@/components/AuthorInfo";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { LanguageToggle } from "@/components/LanguageToggle";
-import { AnimatedBackground } from "@/components/AnimatedBackground";
-import { LoadingScreen } from "@/components/LoadingScreen";
-import { MemoizedLaunchersTab as LaunchersTab } from "@/components/LaunchersTab";
-import { useTranslation } from "@/hooks/useTranslation";
+import { ThemeProvider } from '@/contexts/ThemeContext';
+import { LanguageProvider } from '@/contexts/LanguageContext';
+import { Header } from '@/components/Header';
+import { JavaFinderTabs } from '@/components/JavaFinderTabs';
+import { Footer } from '@/components/Footer';
 
 const Index = () => {
-  const { t } = useTranslation();
-  const [theme, setTheme] = useState<'light' | 'dark' | 'neon' | 'retro'>('dark');
-  const [isLoading, setIsLoading] = useState(true);
-  const currentYear = new Date().getFullYear();
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('jsf-theme') as typeof theme;
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('jsf-theme', theme);
-    document.documentElement.className = theme;
-  }, [theme]);
-
-  useEffect(() => {
-    // Симуляция загрузки
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <LoadingScreen theme={theme} />;
-  }
-
   return (
-    <div className={`min-h-screen transition-all duration-500 ${theme}`} data-theme={theme}>
-      <AnimatedBackground theme={theme} />
-      
-      {/* Header */}
-      <header className="relative z-10 border-b glass-card">
-        <div className="container mx-auto px-2 sm:px-4 py-2 sm:py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-2 md:space-x-4 animate-slide-in">
-            <img 
-              src="/logo.svg" 
-              alt="JSF Logo" 
-              className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 animate-float"
-              loading="eager"
-            />
-            <div className="space-y-0.5 sm:space-y-1">
-              <h1 className="text-lg sm:text-xl md:text-3xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-float">
-                Java Selector Finder
-              </h1>
-              <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">
-                {t('subtitle', 'Найдите идеальную Java для вашей игры')}
-              </p>
+    <ThemeProvider>
+      <LanguageProvider>
+        <div className="min-h-screen relative overflow-hidden">
+          {/* Анимированный фон */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-slate-950 dark:via-blue-950 dark:to-purple-950">
+            <div className="absolute inset-0">
+              {/* Плавающие частицы */}
+              <div className="absolute top-20 left-10 w-2 h-2 bg-blue-400 rounded-full animate-bounce opacity-60" style={{animationDelay: '0s', animationDuration: '3s'}}></div>
+              <div className="absolute top-40 right-20 w-3 h-3 bg-green-400 rounded-full animate-bounce opacity-40" style={{animationDelay: '1s', animationDuration: '4s'}}></div>
+              <div className="absolute top-60 left-1/4 w-1 h-1 bg-purple-400 rounded-full animate-bounce opacity-50" style={{animationDelay: '2s', animationDuration: '5s'}}></div>
+              <div className="absolute bottom-40 right-1/4 w-2 h-2 bg-orange-400 rounded-full animate-bounce opacity-30" style={{animationDelay: '3s', animationDuration: '6s'}}></div>
+              
+              {/* Градиентные круги */}
+              <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-blue-200 to-purple-200 dark:from-blue-800 dark:to-purple-800 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
+              <div className="absolute top-3/4 right-1/4 w-40 h-40 bg-gradient-to-r from-green-200 to-blue-200 dark:from-green-800 dark:to-blue-800 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" style={{animationDelay: '2s'}}></div>
+              <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-gradient-to-r from-purple-200 to-pink-200 dark:from-purple-800 dark:to-pink-800 rounded-full mix-blend-multiply filter blur-xl opacity-25 animate-pulse" style={{animationDelay: '4s'}}></div>
             </div>
           </div>
           
-          <div className="flex items-center space-x-1 sm:space-x-2 md:space-x-4 animate-fade-in">
-            <LanguageToggle />
-            <ThemeToggle theme={theme} setTheme={setTheme} />
+          {/* Контент */}
+          <div className="relative z-10">
+            <Header />
+            <main>
+              <JavaFinderTabs />
+            </main>
+            <Footer />
           </div>
         </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="relative z-10 container mx-auto px-2 sm:px-4 py-2 sm:py-4 md:py-8">
-        <Tabs defaultValue="main" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-2 sm:mb-4 md:mb-8 enhanced-tabs">
-            <TabsTrigger 
-              value="main" 
-              className="enhanced-tab-trigger text-xs md:text-base"
-            >
-              {t('tabs.main', 'Главная')}
-            </TabsTrigger>
-            <TabsTrigger 
-              value="launchers" 
-              className="enhanced-tab-trigger text-xs md:text-base"
-            >
-              {t('tabs.launchers', 'Лаунчеры')}
-            </TabsTrigger>
-            <TabsTrigger 
-              value="author" 
-              className="enhanced-tab-trigger text-xs md:text-base"
-            >
-              {t('tabs.author', 'Автор')}
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="main" className="space-y-4 md:space-y-8 animate-fade-in">
-            <JavaSelector />
-          </TabsContent>
-
-          <TabsContent value="launchers" className="animate-fade-in">
-            <LaunchersTab />
-          </TabsContent>
-
-          <TabsContent value="author" className="animate-fade-in">
-            <AuthorInfo />
-          </TabsContent>
-        </Tabs>
-      </main>
-
-      {/* Footer */}
-      <footer className="relative z-10 border-t glass-card mt-8 md:mt-16">
-        <div className="container mx-auto px-4 py-6 text-center">
-          <div className="flex items-center justify-center gap-2 animate-fade-in text-sm md:text-base">
-            <span className="text-muted-foreground">
-              {t('footer.made_by', 'Создано с')} 
-            </span>
-            <span className="text-red-500 animate-pulse">❤️</span>
-            <span className="text-muted-foreground">{t('footer.by', 'от')}</span>
-            <a 
-              href="https://github.com/BANSAFAn" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-primary hover:underline transition-all duration-300 hover:scale-105"
-            >
-              BANSAFAn
-            </a>
-          </div>
-          <p className="text-xs text-muted-foreground mt-2">
-            © {currentYear} JSF - Java Selector for Minecraft
-          </p>
-        </div>
-      </footer>
-    </div>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 };
 

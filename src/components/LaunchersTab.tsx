@@ -1,65 +1,93 @@
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { AlertTriangle } from "lucide-react";
-import { useTranslation } from "@/hooks/useTranslation";
-import { memo } from "react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Construction, ExternalLink, Github } from 'lucide-react';
 
-const LaunchersTab = () => {
-  const { t } = useTranslation();
+export const LaunchersTab = () => {
+  const launchersInVerification = [
+    'XMCL',
+    'HMCL', 
+    'Lexplosion',
+    'Fold Craft Launcher',
+    'Fluent Launcher'
+  ];
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <Card className="glass-card border-yellow-200 bg-yellow-50/50 dark:bg-yellow-950/20 animate-bounce-in transition-all duration-300 hover:scale-[1.01]">
-        <CardHeader className="text-center">
-          <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
-            <AlertTriangle className="h-8 w-8 text-white" />
-          </div>
-          <CardTitle className="text-2xl">
-            {t('launchers.title', 'Лаунчеры Minecraft')}
+    <div className="space-y-6">
+      <Card className="border-amber-200 bg-amber-50 dark:bg-amber-950/20 dark:border-amber-800">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-amber-800 dark:text-amber-200">
+            <Construction className="w-5 h-5" />
+            Development Notice
           </CardTitle>
-          <CardDescription className="text-lg">
-            {t('launchers.coming_soon', 'Скоро здесь появятся рекомендации лаунчеров')}
+          <CardDescription className="text-amber-700 dark:text-amber-300">
+            This section is currently in development and verification. We're working hard to provide you with comprehensive launcher information.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="text-center">
-            <Badge variant="secondary" className="text-lg px-4 py-2 animate-pulse">
-              {t('launchers.in_development', 'В разработке')}
-            </Badge>
+        <CardContent className="space-y-4">
+          <div>
+            <h3 className="font-medium mb-2 text-amber-800 dark:text-amber-200">Currently Verifying Launchers:</h3>
+            <div className="flex flex-wrap gap-2">
+              {launchersInVerification.map((launcher) => (
+                <Badge key={launcher} variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-200">
+                  {launcher}
+                </Badge>
+              ))}
+            </div>
           </div>
           
-          <div className="p-4 sm:p-6 bg-muted/50 rounded-lg transition-all duration-300 hover:bg-muted/70">
-            <h3 className="font-semibold mb-3 text-center">
-              {t('launchers.what_coming', 'Что будет добавлено:')}
-            </h3>
-            <ul className="space-y-2 text-muted-foreground">
-              <li className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                {t('launchers.feature_1', 'Рекомендации официальных лаунчеров')}
-              </li>
-              <li className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.2s' }} />
-                {t('launchers.feature_2', 'Сторонние лаунчеры (MultiMC, Prism, etc.)')}
-              </li>
-              <li className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.4s' }} />
-                {t('launchers.feature_3', 'Настройки производительности')}
-              </li>
-              <li className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.6s' }} />
-                {t('launchers.feature_4', 'Автоматическая установка модов')}
-              </li>
-            </ul>
+          <div className="pt-4">
+            <p className="text-sm text-amber-700 dark:text-amber-300 mb-3">
+              Want your launcher listed? Submit a request via GitHub Issues and we'll review it for inclusion.
+            </p>
+            <Button 
+              className="bg-amber-600 hover:bg-amber-700 text-white"
+              asChild
+            >
+              <a 
+                href="https://github.com/BANSAFAn/minecraft-java-finder/issues/new?template=launcher-submission.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2"
+              >
+                <Github className="w-4 h-4" />
+                Submit Launcher Request
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </Button>
           </div>
+        </CardContent>
+      </Card>
 
-          <div className="text-center text-xs sm:text-sm text-muted-foreground">
-            {t('launchers.current_message', 'В настоящее время мы не можем рекомендовать конкретные лаунчеры, но эта функция будет добавлена в ближайшее время.')}
+      <Card>
+        <CardHeader>
+          <CardTitle>What We're Working On</CardTitle>
+          <CardDescription>
+            Here's what you can expect when this section is complete
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="p-4 border rounded-lg bg-muted/50">
+              <h3 className="font-medium mb-2">Launcher Ratings</h3>
+              <p className="text-sm text-muted-foreground">Community-based ratings and reviews for each launcher</p>
+            </div>
+            <div className="p-4 border rounded-lg bg-muted/50">
+              <h3 className="font-medium mb-2">Feature Comparison</h3>
+              <p className="text-sm text-muted-foreground">Side-by-side comparison of launcher features and capabilities</p>
+            </div>
+            <div className="p-4 border rounded-lg bg-muted/50">
+              <h3 className="font-medium mb-2">Direct Downloads</h3>
+              <p className="text-sm text-muted-foreground">Verified download links and installation guides</p>
+            </div>
+            <div className="p-4 border rounded-lg bg-muted/50">
+              <h3 className="font-medium mb-2">Compatibility Info</h3>
+              <p className="text-sm text-muted-foreground">Java version compatibility and modloader support</p>
+            </div>
           </div>
         </CardContent>
       </Card>
     </div>
   );
 };
-
-export const MemoizedLaunchersTab = memo(LaunchersTab);
